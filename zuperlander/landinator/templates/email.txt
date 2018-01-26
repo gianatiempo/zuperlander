@@ -1,0 +1,8 @@
+Estimado,
+
+Has recibido una consulta realizada el dia {{now}}.
+
+Dicha consulta es por un vehiculo {{marca}} {{modelo}}, realizada por {{lastname}}, {{name}}, email {{email}} y telefono
+{{prefix}} {{phone}}, de la ciudad de {{city}}, adjuntando el siguiente comentario:
+
+{{comment}}

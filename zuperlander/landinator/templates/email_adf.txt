@@ -1,0 +1,33 @@
+<?ADF VERSION "1.0"?>
+<?XML VERSION "1.0"?>
+<adf>
+ <prospect>
+  <requestdate>{{now}}</requestdate>
+  <vehicle>
+   <year></year>
+   <make>{{marca}}</make>
+   <model>{{modelo}}</model>
+   <comments>{{marca}} {{modelo}}</comments>
+  </vehicle>
+  <customer>
+   <contact>
+    <name part="first" type="individual">{{name}}</name>
+    <name part="last" type="individual">{{lastname}}</name>
+    <email preferredcontact="1">{{email}}</email>
+    <phone type="phone">{{phone}}</phone>
+    <phone type="cellphone">{{phone}}</phone>
+    <address type="home">
+     <city>{{city}}</city>
+    </address>
+   </contact>
+   <comments>{{comment}}</comments>
+  </customer>
+  <vendor>
+   <vendorname>{{vendorname}}</vendorname>
+  </vendor>
+  <provider>
+   <name>{{provider_name}}</name>
+   <service>CAMPAÑA PLAN - {{campaing_name}}</service>
+  </provider>
+ </prospect>
+</adf>

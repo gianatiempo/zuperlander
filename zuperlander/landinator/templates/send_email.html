@@ -1,0 +1,63 @@
+{% extends "admin/base_site.html" %}
+{% load i18n l10n %}
+
+{% block content %}
+<form action="" method="post" id="theForm">{% csrf_token %}
+    <p>Se enviaran correos para los siguientes datos de tracking:</p>
+
+    <ul>{{ queryset|unordered_list }}</ul>
+
+    <div>
+        {% for obj in queryset %}
+        <input type="hidden" name="{{ action_checkbox_name }}" value="{{ obj.pk|unlocalize }}" />
+        {% endfor %}
+        <input type="hidden" name="action" value="send_email" />
+        <input type="hidden" name="post" value="yes" />
+
+        <a href="#" id="filldetails" onclick="addFields()">Add Email</a>
+        <br/>
+        <div id="wrapper">
+            <div><input type="email" name="emails[0]" required><span> ADF </span><input class="filterable" type="checkbox" name="adf[0]" value="NO"></div>
+
+        </div>
+
+        <input type="submit" onclick="doSubmit()" value="{% trans "Send" %}" />
+    </div>
+</form>
+
+<script type="text/javascript">
+    var idx = 1;
+    function addFields(){
+        var input = document.createElement("input");
+        input.type = "email";
+        input.name = "emails["+idx+"]";
+        input.required = "required";
+        var span = document.createElement("span");
+        span.textContent = " ADF ";
+        var cb = document.createElement("input");
+        cb.type = "checkbox";
+        cb.name = "adf["+idx+"]";
+        cb.value = "NO";
+
+        var div = document.createElement("div");
+        div.appendChild(input);
+        div.appendChild(span);
+        div.appendChild(cb);
+
+        var container = document.getElementById("wrapper");
+        container.appendChild(div);
+        idx++;
+    }
+
+    window.onload = function() {
+      document.getElementById('theForm').onsubmit = function() {
+          var checkboxes = document.querySelectorAll("input[type=checkbox]");
+            for (var index = 0; index < checkboxes.length; ++index) {
+                if (checkboxes[index].checked) {
+                    checkboxes[index].value = index;
+                }
+            }
+      };
+    };
+</script>
+{% endblock %}
